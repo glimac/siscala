@@ -1,0 +1,26 @@
+<?php
+$form->setAttribute('action', $this->url('acl/default',array('controller'=>'resources','action'=>'new')));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<div class="box_top">
+    <h2 class="icon frames">Nova Página</h2>
+
+    <ul class="sorting">
+        <li><a href="<?php echo $this->url('acl/default', array('controller' => 'resources', 'action' => 'index'));  ?>" class="active">Listar Páginas</a></li>
+    </ul>
+</div>
+
+<div class="box_content padding">
+
+    <div class="field">
+        <label class="left">Nome: </label>
+        <?php echo $this->formRow($form->get('nome')); ?>
+    </div>
+
+    <label class="left"></label>
+    <button><?php echo $this->formRow($form->get('submit'));  ?>Salvar</button>
+
+</div>
+<?php
+echo $this->form()->closeTag($form);

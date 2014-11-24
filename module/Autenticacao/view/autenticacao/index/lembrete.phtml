@@ -1,0 +1,34 @@
+
+<? $this->layout()->setTemplate('layout/login'); ?>
+
+<!-- General form elements -->
+<div class="row-fluid span10">
+
+    <?php
+    $form = $this->form;
+    $form->setAttributes(array('action' => $this->url('autenticacao/default',array('controller' => 'Index', 'action' => 'lembrete')), 'name' => 'lembrete'));
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <div class="span4">
+        <div class="control-group">
+            <div class="controls">
+                <h2>Lembrete de Senha</h2>
+                <p>
+                 A nova senha será enviada para o email de cadastro.
+                </p>
+            </div>
+            <div class="controls"><?=$this->formRow($form->get('email'));?></div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls margin">
+                <?php echo $this->formRow($form->get('Entrar')->setValue('Enviar')); ?>
+                <a href="http://ganisrael.web957.uni5.net/inscricoes/public/autenticacao" class="margin">Voltar</a>
+            </div>
+        </div>
+    </div>
+    <?=$this->form()->closeTag();?>
+
+</div>
+<!-- /general form elements -->

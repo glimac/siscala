@@ -1,0 +1,69 @@
+
+        <!-- Content wrapper -->
+        <div class="wrapper">
+
+                  <!-- Breadcrumbs line -->
+                  <div class="crumbs">
+                <ul id="breadcrumbs" class="breadcrumb"> 
+                    <li><a href="/inscricao/">Inicio</a></li>
+                    <li><a href="#">Usuários Cadastrados</a></li>
+                </ul>
+
+                <ul class="alt-buttons">
+                    <li><a href="#" title=""><i class="icon-signal"></i><span>Stats</span></a></li>
+                    <li class="dropdown"><a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Tasks</span> <strong>(+16)</strong></a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="#" title=""><i class="icon-plus"></i>Add new task</a></li>
+                            <li><a href="#" title=""><i class="icon-reorder"></i>Statement</a></li>
+                            <li><a href="#" title=""><i class="icon-cog"></i>Settings</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                  </div>
+                  <!-- /breadcrumbs line -->
+
+                  <!-- Page header -->
+                  <div class="page-header">
+                        <div class="page-title">
+                                  <h5>Atenção</h5>
+                                  <span>Esta tela tem a funcionalidade de listar os usuários a qual poderão ser administrado por você.</span>
+                        </div>
+                  </div>
+                  <!-- /page header -->
+                  
+                <div class="widget">
+                <div class="navbar"><div class="navbar-inner"><h6>Usuários Cadastrados</h6></div></div>
+                    <ul class="toolbar">
+                        <li><a href="/autenticacao/index/cadastrar" title=""><i class="icon-download-alt"></i><span>Cadastrar Novo Usuário</span></a></li>
+                        <li><a href="#" title=""><i class="icon-cog"></i><span>Gerar Excel</span></a></li>
+                    </ul>
+                    <div class="table-overflow">
+                        <table class="table table-bordered table-checks">
+                          <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Perfil</th>
+                                  <th>Nome Completo</th>
+                                  <th>Email</th>
+                                  <th>Ações</th>
+                              </tr>
+                          </thead>
+                          <?php foreach($this->data as $entity): ?>
+                          <tbody>
+                              <tr>
+                                  <td><?=$entity->getIdUsuario()?></td>
+                                  <td><?=$entity->getIdRole()->getNome()?></td>
+                                  <td><?=$entity->getNome()?></td>
+                                  <td><?=$entity->getEmail()?></td>
+                                  <td>
+                                      <a href="<?php echo $this->url('autenticacao/default', array('controller' => 'index', 'action' => 'atualizar', 'id' => $entity->getIdUsuario())); ?>" class="tip" title="" data-original-title="Edit entry"><i class="fam-pencil"></i></a>
+                                      <!--<a href="<?=$this->url('autenticacao/default', array('controller' => 'index', 'action' => 'delete', 'id' => $entity->getIdUsuario())); ?>" class="tip" title="" data-original-title="Remove entry"><i class="fam-cross"></i></a>-->
+                                  </td>
+                              </tr>
+                          <?php endforeach; ?>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+                 <?php echo $this->paginationControl($this->data,'Sliding','partials/paginator'); ?>
+</div>

@@ -1,0 +1,22 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: Essa rotina será utilizada para gerar as escalas semanalmente
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `gerarEscala` ()
+BEGIN
+  DECLARE dia INT DEFAULT 0;
+
+  WHILE dia < 7 DO
+	INSERT INTO siscala.servico (SERDATA, MILCODIGO)
+		SELECT DATE_ADD(curdate(),INTERVAL dia DAY), M.MILCODIGO 
+		FROM siscala.MILITAR M
+		INNER JOIN siscala.MILITAR_ALA MA ON (M.MILCODIGO = MA.MILCODIGO)
+		INNER JOIN siscala.ALA A          ON (MA.ALACODIGO = A.ALACODIGO)
+		LEFT JOIN  siscala.SITUACAO S     ON (M.MILCODIGO = S.MILCODIGO)
+		WHERE S.SITDATAFIM is null OR S.SITDATAFIM < DATE_ADD(curdate(),INTERVAL dia DAY);
+
+    SET dia = dia + 1;
+  END WHILE;
+END

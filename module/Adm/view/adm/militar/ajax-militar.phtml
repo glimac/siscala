@@ -1,0 +1,7 @@
+<?php
+if ($this->result) {
+    echo json_encode(array(
+        'milcodigo'     => $this->result[0]->getMilcodigo(),
+        'milnomeguerra' => $this->result[0]->getMilnomeguerra()
+    ));
+}

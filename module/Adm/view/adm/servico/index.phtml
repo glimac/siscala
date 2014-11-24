@@ -1,0 +1,53 @@
+<style>
+    
+</style>
+<div class="grid_24">
+    <?php
+    $form->setAttribute('action', $this->url('adm/default', array('controller' => 'servico', 'action' => 'idnex')));
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <div class="box_top">
+        <h2 class="icon frames">Consulta Militar para Troca de Serviço</h2>
+    </div>
+
+    <div class="box_content padding">
+
+        <div class="field">
+            <label class="left">Matricula: </label>
+            <?php echo $this->formRow($form->get('milmatricula')); ?>
+        </div>
+
+        <label class="left"></label>
+        <button><?php echo $this->formRow($form->get('pesquisar')); ?>Pesquisar</button>
+
+    </div>
+    <?php echo $this->form()->closeTag($form);?>
+</div>
+
+<div class="grid_24">
+    <div class="box_top">
+        <h2 class="icon frames">Datas de Serviço</h2>
+    </div>
+
+    <div class="box_content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rendering engine</th>
+                    <?php for ($i = 1 ; $i < 31 ; $i++) : ?>
+                        <th><?php echo $i; ?></th>
+                    <?php endfor; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Trident</td>
+                    <?php for ($i = 1 ; $i < 31 ; $i++) : ?>
+                        <td><?php echo $i; ?></td>
+                    <?php endfor; ?>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

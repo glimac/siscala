@@ -1,0 +1,42 @@
+<!--Burlando css default-->
+<link href="<?php echo $this->basePath() ?>/assets/application/css/militarAla.css" rel="stylesheet" media="screen" type="text/css" />
+<div class="grid_24">
+    <?php foreach ($this->resultEscala as $i => $row) : ?>
+        <div class="grid_1<?php echo ($i % 2 == 0 ? 2 : 1); ?>">
+            <div class="box_top">
+                <div>
+                    <h2 class="icon graph"><?php echo $row->getEscdescricao(); ?></h2>
+                </div>
+                <div>
+                    <h3><span class="tip" title="Associar Militar"><a href="<?php echo $this->url('adm/default', array('controller' => 'ala', 'action' => 'associar-militar', 'id' => $row->getEsccodigo())); ?>" class="active">Associar Militar</a></span></h3>
+                </div>
+
+            </div>
+            <div class="box_content">
+                <table>
+                    <tbody class="sorting">
+                        <?php foreach ($this->resultAla as $rowAla) : ?>
+                            <?php if ($row->getEsccodigo() == $rowAla->getEsccodigo()->getEsccodigo()) : ?>
+
+                                <tr>
+                                    <th colspan="3" style="text-align: center;"><?php echo $rowAla->getAladescricao(); ?></th>
+                                </tr>
+
+                                <?php foreach ($this->resultMilitarAla as $rowMilitarAla) : ?>
+                                    <?php if ($rowAla->getAlacodigo() == $rowMilitarAla->getAlacodigo()->getAlacodigo()) : ?>
+                                        <tr>
+                                            <td style="text-align: center;"><?php echo $rowMilitarAla->getMilcodigo()->getMilnomeguerra(); ?></td>
+                                            <td style="text-align: center;"><?php echo $rowMilitarAla->getMilcodigo()->getMiltelefone(); ?></td>
+                                            <td style="text-align: right;"><a href="<?php echo $this->url('adm/default', array('controller' => 'ala', 'action' => 'excluir', 'id' => $rowMilitarAla->getMiacodigo())); ?>" class="delete tip" title="Remover"></a></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

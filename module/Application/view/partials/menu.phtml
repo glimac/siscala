@@ -1,0 +1,111 @@
+    <!-- Sidebar -->
+    <div id="sidebar">
+
+        <div class="sidebar-tabs">
+            <ul class="tabs-nav two-items">
+            <!--<li><a href="#general" title=""><i class="icon-reorder"><?=date('d/m/Y');?></i></a></li>-->
+            </ul>
+
+            <div id="general">
+                  <!-- Sidebar user -->
+                  <div class="sidebar-user widget">
+                      <?if($this->usuarioIdentity()):?>
+                      <div class="navbar"><div class="navbar-inner"><h6>Bem vindo(a), <?=$this->usuarioIdentity()[0]['user']->getNome()?></h6></div></div>
+                      <a href="#" title="" class="user"><img src="<?=$this->basePath()?>/Application/img/logo.png" alt="" /></a>
+                      <ul class="user-links">
+                              <li><a href="<?=$this->basePath()?>/autenticacao/index/atualizar/<?=$this->usuarioIdentity()[0]['user']->getIdUsuario()?>" title="">Perfil</a></li>
+                              <li><a href="<?=$this->basePath()?>/autenticacao/index/logout" title="">Sair</strong></a></li>
+                      </ul>
+                      <?endif;?>
+                  </div>
+                  <!-- /sidebar user -->
+
+                  <? if ($this->usuarioIdentity()[0]['perfil'] != 'Publico') :?>
+                  <div class="general-stats widget">
+                        <ul class="head">
+                          <li><span>Inscrições</span></li>
+                          <li><span>Andamento</span></li>
+                          <li><span>Fechado</span></li>
+                        </ul>
+                        <ul class="body">
+                          <li><strong><?=$this->layout()->arrLayout['totalInscricao']?></strong></li>
+                          <li><strong><?=$this->layout()->arrLayout['totalInscricao'] - $this->layout()->arrLayout['totalInscricaoFinalizada'];?></strong></li>
+                          <li><strong><?=$this->layout()->arrLayout['totalInscricaoFinalizada'];?></strong></li>
+                        </ul>
+                   </div>
+
+                  <!-- Main navigation -->
+                  <ul class="navigation widget">
+                      <li><a href="#" title="" class="expand"><i class="icon-reorder"></i>Acl</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/acl/roles/index" title="Roles(perfil)">Perfis de usuários</a></li>
+                              <li><a href="<?=$this->basePath()?>/acl/resources/index" title="Resources(Controller)">Paginas restritas</a></li>
+                              <li><a href="<?=$this->basePath()?>/acl/privileges/index" title="Privileges(permissao)">Permissão aos perfis</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#" title="" class="expand"><i class="icon-reorder"></i>Usuários</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/autenticacao/index/cadastrar" title="">Cadastrar</a></li>
+                              <li><a href="<?=$this->basePath()?>/autenticacao/index/usuarios" title="">Listar Usuários</a></li>
+                          </ul>
+                      </li>
+                      <? if ($this->usuarioIdentity()[0]['perfil'] == 'Administrador' ||$this->usuarioIdentity()[0]['perfil'] == 'Gerente' ) :?>
+                      <li><a href="#" title="" class="expand"><i class="icon-tasks"></i>Bolsas</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/bolsa/index/index" title="">Solicitação de bolsa</a></li>
+                          </ul>
+                      </li>
+                      <? endif; ?>
+                      <? if ($this->usuarioIdentity()[0]['perfil'] == 'Administrador' ||$this->usuarioIdentity()[0]['perfil'] == 'Gerente' ) :?>
+                      <li><a href="#" title="" class="expand"><i class="icon-tasks"></i>Inscrições</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes/status/1" title="">Solicitação em aberto</a></li>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes/status/2" title="">Confirmação do valor</a></li>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes" title="">Todas Inscrições</a></li>
+                          </ul>
+                      </li>
+                      <? endif; ?>
+                      <li><a href="#" title="" class="expand"><i class="icon-tasks"></i>Confirmação de PagSeguro</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes/status/3" title="">Em Aberto</a></li>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes/status/4" title="">Confirmados</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#" title="" class="expand"><i class="icon-tasks"></i>Produtos</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/produto/index/cadastrar" title="Cadastrar Produto">Cadastrar</a></li>
+                              <li><a href="<?=$this->basePath()?>/produto/index/listarProdutos" title="Listar Produtos">Listar produtos</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+                  <!-- /main navigation -->
+                  <? else :?>
+                  <!-- Main navigation -->
+                  <ul class="navigation widget">
+                      <li><a href="#" title="" class="expand"><i class="icon-tasks"></i>Dados pessoais</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/inscricao/responsavel/index" title="">Responsável</a></li>
+                              <li><a href="<?=$this->basePath()?>/inscricao/filho/index" title="">Filho(s)</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#" title="" class="expand"><i class="icon-tasks"></i>Inscrições</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/index" title="">Solicitação de inscrição</a></li>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes/status/1" title="">Solicitação em aberto</a></li>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes/status/2" title="">Aguardando pagamento</a></li>
+                              <li><a href="<?=$this->basePath()?>/inscricao/index/inscricoes/status/4" title="">Pagamento confirmado</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#" title="" class="expand"><i class="icon-tasks"></i>Bolsas</a>
+                          <ul>
+                              <li><a href="<?=$this->basePath()?>/bolsa/index/cadastrar" title="">Solicitação de bolsa</a></li>
+                              <li><a href="<?=$this->basePath()?>/bolsa/index/index" title="">Solicitação realizadas</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+                  <!-- /main navigation -->
+                  <? endif;?>
+            </div>
+    </div>
+    </div>
+    <!-- /sidebar -->

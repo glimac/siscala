@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Siscala</title>
+
+    <!-- Imports General CSS and jQuery CSS -->
+    <link href="<?= $this->basePath() ?>/assets/vendor/css/screen.css" rel="stylesheet" media="screen" type="text/css" />
+
+    <!-- CSS for Fluid and Fixed Widths - Double to prevent flickering on change -->
+    <link href="<?= $this->basePath() ?>/assets/vendor/css/fixed.css" rel="stylesheet" media="screen" type="text/css" />
+    <link href="<?= $this->basePath() ?>/assets/vendor/css/fixed.css" rel="stylesheet" media="screen" type="text/css" class="width" />
+
+    <!-- IE Stylesheet ie7 - Added in 1.2 -->
+    <!--[if lt IE 8]> <html lang="en" class="ie7"> <![endif]-->
+
+    <!-- IE Stylesheet ie8 - Added in 1.1 -->
+    <!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
+
+    <!-- CSS for Theme Styles - Double to prevent flickering on change -->
+    <link href="<?= $this->basePath() ?>/assets/vendor/css/theme/blue.css" rel="stylesheet" media="screen" type="text/css" />
+    <link href="<?= $this->basePath() ?>/assets/vendor/css/theme/blue.css" rel="stylesheet" media="screen" type="text/css" class="theme" />
+
+    <!-- IE Canvas Fix for Visualize Charts - Added in 1.1 -->
+    <!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+
+    <!-- jQuery thats loaded before document ready to prevent flickering - Rest are found at the bottom -->
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.styleswitcher.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.visualize.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Start: Page Wrap -->
+    <div id="wrap" class="container_24">
+
+        <!-- Header Grid Container: Start -->
+        <div class="login">
+
+            <!-- Success Notice: Start -->
+                <?php if ($msgs = $this->flashMessenger()->render(\Zend\Mvc\Controller\Plugin\FlashMessenger::NAMESPACE_SUCCESS)) : ?>
+                <div class="notice success">
+                    <p><?php echo substr($msgs, 22, -10); ?></p>
+                </div>
+                <?php endif; ?>
+                <!-- Success Notice: End -->
+
+                <!-- Warning Notice: Start -->
+                <?php if ($msgs = $this->flashMessenger()->render(\Zend\Mvc\Controller\Plugin\FlashMessenger::NAMESPACE_INFO)) : ?>
+                <div class="notice warning">
+                    <p><?php echo substr($msgs, 22, -10); ?></p>
+                </div>
+                <?php endif; ?>
+                <!-- Warning Notice: End -->
+
+                <!-- Info Notice: Start -->
+                <?php if ($msgs = $this->flashMessenger()->render(\Zend\Mvc\Controller\Plugin\FlashMessenger::NAMESPACE_DEFAULT)) : ?>
+                <div class="notice info">
+                    <p><?php echo substr($msgs, 22, -10); ?></p>
+                </div>
+                <?php endif; ?>
+                <!-- Info Notice: End -->
+
+                <!-- Error Notice: Start -->
+                <?php if ($msgs = $this->flashMessenger()->render(\Zend\Mvc\Controller\Plugin\FlashMessenger::NAMESPACE_ERROR)) : ?>
+                <div class="notice error">
+                    <p><?php echo substr($msgs, 22, -10); ?></p>
+                </div>
+                <?php endif; ?>
+            <!-- Info Notice: Start -->
+            <?php if (!$msgs) : ?>
+                <div class="notice info">
+                    <p>Para acessar o Siscala informe a matricula do militar e a senha.</p>
+                </div>
+            <?php endif; ?>
+            <!-- Info Notice: End -->
+
+            <!-- Header: Start -->
+            <div id="header">
+
+                <!-- Logo: Start -->
+                <a href="#" id="logo">Siscala</a>
+                <!-- Logo: End -->
+
+                <!-- Login: Start -->
+                <?php echo $this->content; ?>
+                <!-- Login: End -->
+
+            </div>
+            <!-- Header: End -->
+
+            <!-- Breadcrumb Bar: Start -->
+            <div id="breadcrumb">
+
+                <!-- Breadcrumb: Start -->
+                <ul class="left">
+                    <li class="icon key"><a href="#">Esqueceu a senha?</a></li>
+                </ul>
+                <!-- Breadcrumb: End -->
+
+                <!-- Breadcrumb Icon Links: Start -->
+                <ul class="right">
+                    <li><a href="#" class="icon home tip" title="Home">Home</a></li>
+                </ul>
+                <!-- Breadcrumb Icon Links: End -->
+
+            </div>
+            <!-- Breadcrumb Bar: End -->
+
+        </div>
+        <!-- Header Grid Container: End -->
+
+    </div>
+    <!-- End: Page Wrap -->
+
+    <!-- jQuery libs - Rest are found in the head section (at top) -->
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.visualize-tooltip.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery-animate-css-rotate-scale.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery-ui-1.8.13.custom.min.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.poshytip.min.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.quicksand.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.facebox.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/jquery.wysiwyg.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/syntaxHighlighter/shCore.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/syntaxHighlighter/shBrushXml.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/syntaxHighlighter/shBrushJScript.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/syntaxHighlighter/shBrushCss.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/syntaxHighlighter/shBrushPhp.js"></script>
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/fileTree/jqueryFileTree.js"></script> <!-- Added in 1.2 -->
+
+    <!-- jQuery Customization -->
+    <script type="text/javascript" src="<?= $this->basePath() ?>/assets/vendor/js/custom.js"></script>
+
+</body>
+</html>

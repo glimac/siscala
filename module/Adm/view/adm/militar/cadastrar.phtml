@@ -1,0 +1,92 @@
+<div class="grid_24">
+    <?php
+    $form->setAttribute('action', $this->url('adm/default', array('controller' => 'militar', 'action' => 'cadastrar')));
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <div class="box_top">
+        <h2 class="icon frames">Cadastrar Militar</h2>
+
+        <ul class="sorting">
+            <li><a href="<?php echo $this->url('adm/default', array('controller' => 'militar', 'action' => 'index'));  ?>" class="active">Listar</a></li>
+        </ul>
+    </div>
+
+    <div class="box_content padding">
+
+        <div class="field">
+            <label class="left">Nome: </label>
+            <?php echo $this->formRow($form->get('milnome')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Nome Guerra: </label>
+            <?php echo $this->formRow($form->get('milnomeguerra')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Posto/Graduação: </label>
+            <label class=""></label><?php echo $this->formRow($form->get('pgrcodigo')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">CPF: </label>
+            <?php echo $this->formRow($form->get('milcpf')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Identidade: </label>
+            <?php echo $this->formRow($form->get('milidt')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Matricula: </label>
+            <?php echo $this->formRow($form->get('milmatricula')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Quadro: </label>
+            <?php echo $this->formRow($form->get('quacodigo')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Data Nascimento: </label>
+            <?php echo $this->formRow($form->get('mildtnascimento')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Telefone: </label>
+            <?php echo $this->formRow($form->get('miltelefone')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Telefone Sec.: </label>
+            <?php echo $this->formRow($form->get('miltelefonesec')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Endereço: </label>
+            <?php echo $this->formRow($form->get('milendereco')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Email: </label>
+            <?php echo $this->formRow($form->get('milemail')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Email Sec.: </label>
+            <?php echo $this->formRow($form->get('milemailsec')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Perfil: </label>
+            <?php echo $this->formRow($form->get('roleid')); ?>
+        </div>
+
+        <label class="left"></label>
+        <button><?php echo $this->formRow($form->get('salvar')); ?>Salvar</button>
+
+    </div>
+    <?php echo $this->form()->closeTag($form);?>
+</div>

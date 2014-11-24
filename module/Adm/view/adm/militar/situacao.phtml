@@ -1,0 +1,61 @@
+<!--Burlando css default-->
+<link href="<?php echo $this->basePath() ?>/assets/application/css/militarAla.css" rel="stylesheet" media="screen" type="text/css" />
+<div class="grid_24">
+    <div class="box_top">
+        <h2 class="icon pages">Situação do Militar</h2>
+        <h3><span class="tip" title="+ Situação Militar"><a href="<?php echo $this->url('adm/default', array('controller' => 'militar', 'action' => 'cadastrar-situacao')); ?>" >+ Situação Militar </a></span></h3>
+        <ul class="sorting">
+            <?php if ($this->resultTipoSituacao) : ?>
+                <?php foreach ($this->resultTipoSituacao as $i => $row) : ?>
+                    <?php $active = (!$i) ? 'active' : ''; ?>
+                    <li><a href="#tab<?php echo $i; ?>" class="<?php echo $active; ?>"><?php echo $row->getTpsdescricao(); ?></a></li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </ul>
+
+    </div>
+
+    <div class="box_content">
+
+        <div class="tabs">
+            <?php if ($this->resultTipoSituacao) : ?>
+                <?php foreach ($this->resultTipoSituacao as $x => $row) : ?>
+                    <div id="tab<?php echo $x; ?>">
+                        <table class="sorting">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Situação</th>
+                                    <?php if ($row->getTpscodigo() != 1) : ?>
+                                        <th>Data Início</th>
+                                        <th>Data Fim</th>
+                                    <?php endif; ?>
+                                    <th class="align_left center tools">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($this->resultSituacao) : ?>
+                                    <?php foreach ($this->resultSituacao as $rowMilitarSituacao) : ?>
+                                        <?php if ($rowMilitarSituacao->getTpscodigo()->getTpscodigo() == $row->getTpscodigo()) : ?>
+                                            <tr class="gradeA">
+                                                <td><?php echo $rowMilitarSituacao->getMilcodigo()->getMilnomeguerra(); ?></td>
+                                                <td><?php echo $rowMilitarSituacao->getTpscodigo()->getTpsdescricao(); ?></td>
+                                                <?php if ($rowMilitarSituacao->getTpscodigo()->getTpscodigo() != 1) : ?>
+                                                    <td><?php echo $this->formataData($rowMilitarSituacao->getSitdatainicio()); ?></td>
+                                                    <td><?php echo $this->formataData($rowMilitarSituacao->getSitdatafim()); ?></td>
+                                                <?php endif; ?>
+                                                <td class="align_left tools center"><a href="<?php echo $this->url('adm/default', array('controller' => 'militar', 'action' => 'remover-situacao', 'id' => $rowMilitarSituacao->getSitcodigo())); ?>" class="delete tip" title="delete">delete</a></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                        <!-- Plain Table: End -->
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+        <!-- Tabs: End -->
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="grid_24">
+    <?php
+    $form->setAttribute('action', $this->url('adm/default', array('controller' => 'militar', 'action' => 'cadastrar-situacao')));
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <div class="box_top">
+        <h2 class="icon pages">Cadastrar Situação do Militar</h2>
+    </div>
+    <div class="box_content padding">
+        <div class="field">
+            <label class="left">Matrícula: </label>
+            <?php echo $this->formRow($form->get('milmatricula')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Nome Guerra: </label>
+            <?php echo $this->formRow($form->get('milnomeguerra')); ?>
+        </div>
+        <div class="field">
+            <label class="left">Situação: </label>
+            <?php echo $this->formRow($form->get('tpscodigo')); ?>
+        </div>
+        <div class="field">
+            <label class="left">Data Início: </label>
+            <?php echo $this->formRow($form->get('sitdatainicio')); ?>
+        </div>
+        <div class="field">
+            <label class="left">Data Fim: </label>
+            <?php echo $this->formRow($form->get('sitdatafim')); ?>
+        </div>
+
+        <label class="left"></label>
+        <?php echo $this->formRow($form->get('milcodigo')); ?>
+        <button><?php echo $this->formRow($form->get('salvar')); ?>Salvar</button>
+    </div>
+    <?php
+    echo $this->form()->closeTag($form);
+    echo $this->headScript()->appendFile($this->basePath() . '/assets/application/js/militar.js');
+    ?>
+</div>

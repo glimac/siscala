@@ -1,0 +1,36 @@
+<?php
+$form->setAttribute('action', $this->url('adm/default', array('controller' => 'ala', 'action' => 'associar-militar', 'id' => $this->result[0]->getEsccodigo()->getEsccodigo())));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<div class="grid_24">
+    <div class="box_top">
+        <h2 class="icon graph">Associação de Militar por Ala</h2>
+    </div>
+    <div class="box_content padding">
+        <div class="field">
+            <label class="left">Escala: </label>
+            <label class="left"><?php echo $this->result[0]->getEsccodigo()->getEscdescricao(); ?></label>
+        </div>
+        <div class="field">
+            <label class="left">Ala: </label>
+            <label class=""></label><?php echo $this->formRow($form->get('alacodigo')); ?>
+        </div>
+        <div class="field">
+            <label class="left">Matrícula: </label>
+            <?php echo $this->formRow($form->get('milmatricula')); ?>
+        </div>
+
+        <div class="field">
+            <label class="left">Militar: </label>
+            <?php echo $this->formRow($form->get('milnomeguerra')); ?>
+            <?php echo $this->formRow($form->get('milcodigo')); ?>
+        </div>
+
+        <label class="left"></label>
+        <button><?php echo $this->formRow($form->get('salvar')); ?>Associar</button>
+    </div>
+</div>
+<?php
+echo $this->form()->closeTag($form);
+echo $this->headScript()->appendFile($this->basePath() . '/assets/application/js/militar.js');

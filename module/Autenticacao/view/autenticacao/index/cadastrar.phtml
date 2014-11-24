@@ -1,0 +1,90 @@
+        <!-- Content wrapper -->
+        <div class="wrapper">
+
+                  <!-- Breadcrumbs line -->
+                  <div class="crumbs">
+                <ul id="breadcrumbs" class="breadcrumb"> 
+                    <li><a href="/inscricao/">Inicio</a></li>
+                    <li><a href="#">Atualizar dados usuários</a></li>
+                </ul>
+
+                <ul class="alt-buttons">
+                    <li><a href="#" title=""><i class="icon-signal"></i><span>Stats</span></a></li>
+                    <li class="dropdown"><a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Tasks</span> <strong>(+16)</strong></a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="#" title=""><i class="icon-plus"></i>Add new task</a></li>
+                            <li><a href="#" title=""><i class="icon-reorder"></i>Statement</a></li>
+                            <li><a href="#" title=""><i class="icon-cog"></i>Settings</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                  </div>
+                  <!-- /breadcrumbs line -->
+
+                  <!-- Page header -->
+                  <div class="page-header">
+                        <div class="page-title">
+                                  <h5>Atenção</h5>
+                                  <span>
+                                      Esta tela tem a funcionalidade de cadastrar os usuários, tanto para a area administrativa quando para realizar inscrições.<br>
+                                  </span>
+                        </div>
+                  </div>
+                  <!-- /page header -->
+
+              <!-- Basic inputs -->
+      <h5 class="widget-name"><i class="icon-align-justify"></i>Cadastro de usuários</h5>
+
+         <?php
+         $form = $this->form;
+         $form->setAttributes(array('action' => $this->url('autenticacao/default', array('controller' => 'index', 'action' => 'cadastrar')), 'name' => 'cadastrar'));
+         $form->prepare();
+         echo $this->form()->openTag($form);
+         echo $this->formHidden($form->get('idUsuario'));
+         ?>
+         <fieldset>
+                  <!-- General form elements -->
+                 <div class="widget row-fluid">
+
+                        <div class="well">
+                            <div class="widget row-fluid">
+                            <div class="navbar"><div class="navbar-inner"><h6><font><font>Formúlario</font></font></h6></div></div>
+
+                            <div class="well">
+
+                            <? if ($this->usuarioIdentity()[0]['perfil'] == 'Administrador'):?>
+                                <div class="control-group">
+                                    <label class="control-label"><font><font>Perfil:</font></font></label>
+                                    <div class="controls"><?=$this->formRow($form->get('idRole'));?></div>
+                                </div>
+                            <? endif; ?>
+
+
+                                <div class="control-group">
+                                    <label class="control-label"><font><font>Nome:</font></font></label>
+                                    <div class="controls"><?=$this->formRow($form->get('nome'));?></div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label"><font><font>Email:</font></font></label>
+                                    <div class="controls"><?=$this->formRow($form->get('email'));?></div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label"><font><font>Senha:</font></font></label>
+                                    <div class="controls"><?=$this->formRow($form->get('password'));?></div>
+                                </div>
+
+                            </div>
+                            </div>
+
+                            <div class="form-actions align-right">
+                                <?php echo $this->formRow($form->get('Cadastrar')); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /general form elements -->
+             </fieldset> 
+        <?php echo $this->form()->closeTag(); ?>
+    <!-- /form grid -->
+    </div>
