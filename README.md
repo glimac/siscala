@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ZendSkeletonApplication
 =======================
 
@@ -56,4 +56,4 @@ siscala
 =======
 
 Sistema de Escala
->>>>>>> origin/master
+siscala
