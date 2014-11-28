@@ -8,7 +8,7 @@ use Zend\Stdlib\Hydrator;
 /**
  * Adm\Entity\Servico
  *
- * @ORM\Table(name="SERVICO")
+ * @ORM\Table(name="siscala.SERVICO")
  * @ORM\Entity(repositoryClass="Adm\Entity\ServicoRepository")
  */
 class Servico

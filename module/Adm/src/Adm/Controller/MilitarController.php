@@ -66,9 +66,11 @@ class MilitarController extends AbstractController
         $serviceMilitar        = $this->getServiceLocator()->get('Militar');
         $servicePostoGraduacao = $this->getServiceLocator()->get('PostoGraduacao');
         $serviceRole           = $this->getServiceLocator()->get('Role');
+        $serviceQuadro         = $this->getServiceLocator()->get('Quadro');
 
         $option['listaPostoGraduacao'] = $servicePostoGraduacao->findAll();
         $option['listaRole']           = $serviceRole->findAll();
+        $option['listaQuadro']         = $serviceQuadro->findAll();
 
         $form = new Militar($option);
         $form->setValidationGroup('milnome', 'milnomeguerra', 'milidt', 'milcpf', 'milmatricula', 'mildtnascimento', 'miltelefone',
@@ -129,13 +131,19 @@ class MilitarController extends AbstractController
 
     public function situacaoAction()
     {
+        $serviceMilitar      = $this->getServiceLocator()->get('Militar');
         $serviceSituacao     = $this->getServiceLocator()->get('Situacao');
         $serviceTipoSituacao = $this->getServiceLocator()->get('TipoSituacao');
 
+        $resultMilitar       = $serviceMilitar->findAll();
         $resultSituacao      = $serviceSituacao->findAll();
         $resultTipoSituacao  = $serviceTipoSituacao->findAll();
 
-        return new ViewModel(array('resultSituacao' => $resultSituacao, 'resultTipoSituacao' => $resultTipoSituacao));
+        return new ViewModel(array(
+            'resultSituacao'        => $resultSituacao,
+            'resultTipoSituacao'    => $resultTipoSituacao,
+            'resultMilitar'         => $resultMilitar
+        ));
     }
 
     public function cadastrarSituacaoAction()

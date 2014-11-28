@@ -1,7 +1,7 @@
 <div class="grid_24">
-    <div class="notice info">
+<!--    <div class="notice info">
         <p>Bem-vindo ao SISCALA! Como a nossa primeira escala ainda não foi montada, <a href="">clique aqui</a> para criar.</p>
-    </div>
+    </div>-->
 
     <div class="box_top">
         <h2 class="icon time">Links rápidos.</h2>
@@ -10,52 +10,57 @@
         <p class="center">
             <a href="<?=$this->url('adm/default', array('controller' => 'militar', 'action' => 'index'));?>" class="big_button add_user"><span>Add Militar</span></a>
             <a href="<?=$this->url('adm/default', array('controller' => 'servico', 'action' => 'index'));?>" class="big_button add_event"><span>Troca de Serviço</span></a>
+<!--            <a href="<?#=$this->url('adm/default', array('controller' => 'escala', 'action' => 'index'));?>" class="big_button add_event"><span>Troca de Serviço</span></a>-->
         </p>
     </div>
 </div>
 
 <div class="grid_12">
-
-    <div class="box_top">
-            <h2 class="icon pages">Escala 12H</h2>
-    </div>
-    <div class="box_content">
-        <?php if ($this->servico) : ?>
-            <?php foreach ($this->servico as $row) : ?>
+    <?php if ($this->militaresServico) : ?>
+        <?php foreach ($this->datasServico as $row) : ?>
+            <div class="box_top">
+                <h2 class="icon pages">Escala 12H - <?php echo date('d/m/Y', strtotime($row['serdata'])); ?></h2>
+            </div>
+            <div class="box_content">
                 <div class="accordion">
-                    <h5><a href="#"></a></h5>
-                    <div>
-                        <p>
-                            Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-                            et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-                            faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-                            mauris vel est.
-                        </p>
+                    <div style="padding: 0px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Militar</th>
+                                    <th>Email</th>
+                                    <th>Telefone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($this->militaresServico as $rowMs) : ?>
+                                    <?php if ($rowMs->getSerdata() == $row['serdata']) : ?>
+                                        <tr>
+                                            <td style="padding: 15px 10px;"><?php echo $rowMs->getMilcodigo()->getPgrcodigo()->getPgrsigla().' '. $rowMs->getMilcodigo()->getMilnomeguerra(); ?></td>
+                                            <td style="padding: 15px 10px;"><?php echo $rowMs->getMilcodigo()->getMilemail(); ?></td>
+                                            <td style="padding: 15px 10px;"><?php echo $rowMs->getMilcodigo()->getMiltelefone(); ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>
 
 <div class="grid_12">
     <div class="box_top">
-        <h2 class="icon pages">Accordion</h2>
+        <h2 class="icon pages">Escala 24H - </h2>
     </div>
     <div class="box_content">
         <div class="accordion">
-            <h5><a href="#">Section 1</a></h5>
+            <h5><a href="#">-</a></h5>
             <div>
                 <p>
-                    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-                    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-                    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-                    mauris vel est.
-                </p>
-                <p>
-                    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                    inceptos himenaeos.
+                    -
                 </p>
             </div>
         </div>

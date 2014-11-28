@@ -47,7 +47,7 @@ class SituacaoFilter  extends InputFilter
 
         $this->add(array(
             'name'     =>'sitdatafim',
-            'required' =>true,
+            'required' =>false,
             'filters'  => array(
                 array('name' => 'StripTags'),
                 array('name' => 'StringTrim'),

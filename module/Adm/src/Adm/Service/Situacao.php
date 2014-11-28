@@ -23,10 +23,8 @@ class Situacao extends \Adm\Service\AbstractService
         $this->saveObject = $arrFk;
 
         $this->saveData['sitdatainicio'] = implode('-', array_reverse(explode('/', $this->saveData['sitdatainicio'])));
-        $this->saveData['sitdatafim']    = implode('-', array_reverse(explode('/', $this->saveData['sitdatafim'])));
+        $this->saveData['sitdatafim']    = (empty($this->saveData['sitdatafim'])) ? null : implode('-', array_reverse(explode('/', $this->saveData['sitdatafim'])));
 
-//        \Zend\Debug\Debug::dump($this->saveData);
-//        exit();
     }
 
     /**

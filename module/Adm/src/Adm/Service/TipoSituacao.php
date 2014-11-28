@@ -7,7 +7,9 @@ use Doctrine\ORM\EntityManager;
 class TipoSituacao extends \Adm\Service\AbstractService
 {
 
-    public function __construct(EntityManager $em)
+    const TPS_PRONTO = 1;
+
+        public function __construct(EntityManager $em)
     {
         parent::__construct($em);
         $this->entity = 'Adm\Entity\TipoSituacao';

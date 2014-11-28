@@ -42,9 +42,25 @@ class Militar extends \Adm\Service\AbstractService
     {
         $arrFk['Adm\Entity\PostoGraduacao'] = array('setPgrcodigo' => $this->saveData['pgrcodigo']);
         $arrFk['Acl\Entity\Role']           = array('setRoleid'    => $this->saveData['roleid']);
-        $arrFk['Acl\Entity\Quadro']         = array('setQuacodigo' => $this->saveData['quacodigo']);
+        $arrFk['Adm\Entity\Quadro']         = array('setQuacodigo' => $this->saveData['quacodigo']);
         $this->saveObject = $arrFk;
 
         $this->saveData['milcpf']      = str_replace('-', '', str_replace('.', '', $this->saveData['milcpf']));
     }
+
+    /**
+     *
+     */
+//    protected function postInsert()
+//    {
+////        \Zend\Debug\Debug::dump($this->getEntityManager()->);
+////        exit();
+//        $serviceSituacao = new \Adm\Service\Situacao($this->getEntityManager());
+//        $serviceSituacao->insert(array(
+//            'milcodigo'     => $this->saveData['milcodigo'],                            //CORRIGIR-> PEGAR CHAVE INSERIDA
+//            'sitdatainicio' => $this->saveData['sitdatainicio'],
+//            'sitdatafim'    => null,
+//            'tpscodigo'     => TipoSituacao::TPS_PRONTO
+//        ));
+//    }
 }

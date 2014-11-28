@@ -12,17 +12,44 @@ use Doctrine\ORM\EntityRepository;
  */
 class ServicoRepository extends EntityRepository
 {
+    public function buscaDatasServicoPorPeriodo($dataInicial, $dataFinal)
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $query = $queryBuilder->select('s.serdata')->distinct()
+            ->from('Adm\Entity\Servico', 's');
+
+        if ($dataInicial) {
+            $query->andWhere("s.serdata >= '{$dataInicial}'");
+        }
+        if ($dataFinal) {
+            $query->andWhere("s.serdata <= '{$dataFinal}'");
+        }
+
+        return $query->getDQL();
+    }
+
+    public function buscaEscala12hPorPeriodo($dataInicial, $dataFinal)
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $query = $queryBuilder->select('s')
+            ->from('Adm\Entity\Servico', 's')
+//            ->join('Departamento\Entity\RlDepartCategoria', 'cat',  \Doctrine\ORM\Query\Expr\Join::WITH, 'cat.idReferencia = categoria.idCat')
+            ->andWhere("s.serdata >= '{$dataInicial}'")
+            ->andWhere("s.serdata <= '{$dataFinal}'");
+        return $query->getDQL();
+    }
+
 //    public function buscaEscala12hPorMes($mes)
 //    {
-//        \Zend\Debug\Debug::dump(date("Y-{$mes}"));
-//        exit();
+////        \Zend\Debug\Debug::dump(date("Y-{$mes}"));
+////        exit();
 //
 //        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
 //        $query = $queryBuilder->select('S')
 //                ->from('Adm\Entity\Servico', 'S')
 //                ->where("(SERDATA > '2014-05' AND SERDATA < '2014-07')");
-//        \Zend\Debug\Debug::dump($query->getDQL());
-//        exit();
+////        \Zend\Debug\Debug::dump($query->getDQL());
+////        exit();
 //
 //        return $query->getDQL();
 //    }
